@@ -1,4 +1,6 @@
 mkdir "output/"
+go get github.com/anaskhan96/soup
+go get golang.org/x/exp
 for GOOS in darwin linux windows; do
    for GOARCH in arm64 amd64 arm; do
      export GOOS GOARCH

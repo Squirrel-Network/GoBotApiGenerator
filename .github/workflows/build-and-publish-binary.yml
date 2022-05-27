@@ -2,7 +2,7 @@
 name: Build Binaries
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
     paths-ignore:
       - '.gitignore'
       - 'build-and-publish-binary.yml'
@@ -57,6 +57,8 @@ jobs:
           go-version-file: 'go.mod'
       - name: Run Compiler
         run: |
+          go get github.com/anaskhan96/soup
+          go get golang.org/x/exp
           go run .
       - name: Checkout Project
         run: |
@@ -66,13 +68,14 @@ jobs:
           VER=$(cat VERSION)
           echo "VERSION=$VER" >> $GITHUB_ENV
       - name: Update Compiled GoBotAPI
-        uses: cpina/github-action-push-to-another-repository@main
+        uses: cpina/github-action-push-to-another-repository@v1.4.2
         env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          API_TOKEN_GITHUB: "${{ secrets.API_TOKEN_GITHUB }}"
         with:
           commit-message: "Update to v ${{ env.VERSION }}"
           source-directory: './gobotapi'
-          destination-github-username: 'Laky-64'
-          destination-repository-name: 'TEST'
+          destination-github-username: 'Squirrel-Network'
+          user-name: 'Laky-64'
+          destination-repository-name: 'gobotapi'
           user-email: <>
-          target-branch: main
+          target-branch: master

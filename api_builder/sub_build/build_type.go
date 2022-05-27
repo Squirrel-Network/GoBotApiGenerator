@@ -50,7 +50,10 @@ func BuildType[Scheme interfaces.SchemeInterface](typeScheme Scheme, builder *co
 				isMethod || isFieldRawImport,
 				isFieldRawImport,
 			)
-			if field.Name == "type" && strings.HasPrefix(typeScheme.GetName(), "InputMedia") {
+			if len(field.Default) > 0 {
+				if isMethod {
+					panic("Default value for methods is not supported")
+				}
 				continue
 			}
 			if field.Optional || field.Types[0] == "InputFile" || strings.Contains(field.Types[0], "Array of") {
