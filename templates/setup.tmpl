@@ -18,6 +18,9 @@ func (ctx *BasicClient) setup() {
 	if ctx.LoggerWriter == nil {
     	ctx.LoggerWriter = log.New(os.Stdout, "", log.LstdFlags)
     }
+	if ctx.TestMode {
+		ctx.apiTestMode += "test/"
+	}
     ctx.logging = NewLogger(ctx.LoggerWriter, logger.Config{
     	Colorful: ctx.LoggerColorful,
     	LogLevel: ctx.LoggingLevel,

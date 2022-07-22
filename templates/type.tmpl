@@ -16,6 +16,7 @@ type BasicClient struct {
 	DownloadRefreshRate time.Duration
 	AllowedUpdates      []string
 	Beta                bool
+	TestMode            bool
 	SleepThreshold      int
 	MaxGoRoutines       int
 	LoggingLevel        logger.LogLevel
@@ -29,6 +30,7 @@ type BasicClient struct {
 	handlers            map[string][]any
 	requestsContext     []rawTypes.CancelableContext
 	concurrencyManager  *concurrency.Pool
+	apiTestMode         string
 }
 
 type Client struct {
