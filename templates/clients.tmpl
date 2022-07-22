@@ -14,6 +14,7 @@ func NewClient(token string) *PollingClient {
 				MaxGoRoutines:  -1,
 				LoggerColorful: true,
 				LoggingLevel:   logger.Warn,
+				TestMode:       false,
 			},
 			Token: token,
 		},

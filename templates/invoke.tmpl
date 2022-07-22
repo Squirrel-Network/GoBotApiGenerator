@@ -25,9 +25,10 @@ func (ctx *Client) Invoke(method rawTypes.Method) (*rawTypes.Result, error) {
 	ctx.logging.Debug(ctx, "gobotapi.invoke:", "Sent:", method)
 	rawResult, err := ctx.executeRequest(
 		fmt.Sprintf(
-			"%sbot%s/%s",
+			"%sbot%s/%s%s",
 			ctx.apiURL,
 			ctx.Token,
+			ctx.apiTestMode,
 			method.MethodName(),
 		),
 		"POST",

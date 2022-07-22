@@ -20,9 +20,10 @@ func (ctx *Client) DownloadBytes(fileId string, progress rawTypes.ProgressCallab
 	}
 	return ctx.executeRequest(
 		fmt.Sprintf(
-			"%sfile/bot%s/%s",
+			"%sfile/bot%s/%s%s",
 			ctx.apiURL,
 			ctx.Token,
+			ctx.apiTestMode,
 			invoke.Result.(types.File).FilePath,
 		),
 		"GET",
